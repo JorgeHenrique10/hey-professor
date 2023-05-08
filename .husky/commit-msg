@@ -23,4 +23,3 @@ fi
 PREFIX=$(echo $ISSUE_ID | awk 'BEGIN { getline; print toupper($0) }')
 
 echo "$PREFIX"': '$(cat "$1") > "$1"
-

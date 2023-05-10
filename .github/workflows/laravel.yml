@@ -30,9 +30,9 @@ jobs:
         touch database/database.sqlite
         
     - name: Install Dependencies JavaScript
-      run: npm run install
+      run: npm install
       
-    - name: Install Dependencies JavaScript
+    - name: Build Assets JavaScript
       run: npm run build
       
     - name: Execute tests (Unit and Feature tests) via Pest

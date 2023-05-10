@@ -28,14 +28,18 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
+        
+    - name: Install Dependencies JavaScript
+      run: npm run install
+      
+    - name: Install Dependencies JavaScript
+      run: npm run build
+      
+    - name: Execute tests (Unit and Feature tests) via Pest
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test --parallel
-      
-    - name: Install Dependencies JavaScript
-      run: npm run builder
       
     - name: Execute Larastran
       run: vendor/bin/phpstan analyse

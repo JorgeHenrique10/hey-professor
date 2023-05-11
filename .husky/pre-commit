@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Rodar o phpstan
+# Rodar o phpstan com  parametro de memoria
 ./vendor/bin/phpstan --memory-limit=2G
 if [ $? -ne 0 ]; then
     echo "Opa! Deu ruim aqui com PHPSTAN. Arrume antes de continuar... 😉";

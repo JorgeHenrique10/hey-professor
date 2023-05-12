@@ -19,6 +19,16 @@ it('shold be able to create a new question bigger than 255 caracter', function (
 });
 
 it('shold check if ends with question mark ?', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    $request = post(route('question.store', [
+        'question' => str_repeat('*', 10),
+    ]));
+    // dd($request);
+    $request->assertSessionHasErrors(['question' => 'The question field must end with one of the following: ?.']);
+    assertDatabaseCount('questions', 0);
 });
 
 it('shold have at least 10 characters', function () {

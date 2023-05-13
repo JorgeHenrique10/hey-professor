@@ -27,7 +27,8 @@ it('shold check if ends with question mark ?', function () {
         'question' => str_repeat('*', 10),
     ]));
     // dd($request);
-    $request->assertSessionHasErrors(['question' => 'The question field must end with one of the following: ?.']);
+    $request->assertSessionHasErrors(['question' => __('validation.ends_with', ['values' => '?', 'attribute' => 'question'])]);
+
     assertDatabaseCount('questions', 0);
 });
 

@@ -4,15 +4,15 @@
 
     <div class="flex flex-col">
         <x-form :action="route('question.like', $question)">
-            <button type="submit" class="flex">
+            <button class="flex">
                 <x-icons.thumbs-up class="w-5 m-1 text-green-500 fill-green-500 hover:fill-green-300" />
-                <span class=" text-green-500">{{ $question->likes }}</span>
+                <span class=" text-green-500">{{ $question->votes_sum_like ?? 0 }}</span>
             </button>
         </x-form>
         <x-form :action="route('question.unlike', $question)" class="flex flex-row">
-            <button type="submit" class="flex">
+            <button class="flex">
                 <x-icons.thumbs-down class="w-5 m-1 text-red-500 fill-red-500 hover:fill-red-300" />
-                <span class="text-red-500">{{ $question->unlikes }}</span>
+                <span class="text-red-500">{{ $question->votes_sum_unlike ?? 0 }}</span>
             </button>
         </x-form>
     </div>

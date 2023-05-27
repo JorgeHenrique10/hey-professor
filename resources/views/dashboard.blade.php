@@ -22,7 +22,7 @@
             </div>
 
             @foreach ($questions as $q)
-                <x-question :question="$q->question" />
+                <x-question :question="$q" />
             @endforeach
 
         </div>

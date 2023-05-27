@@ -9,11 +9,15 @@ class QuestionController extends Controller
 {
     public function store(): RedirectResponse
     {
-        Question::query()->create(
-            request()->validate([
+        request()->validate(
+            [
                 'question' => ['required', 'min:10', 'ends_with:?'],
-            ])
+            ]
         );
+        Question::query()->create([
+            'question' => request('question'),
+            'draft'    => true,
+        ]);
 
         return to_route('dashboard');
     }

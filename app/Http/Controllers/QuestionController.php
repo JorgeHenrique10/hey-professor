@@ -15,8 +15,9 @@ class QuestionController extends Controller
             ]
         );
         Question::query()->create([
-            'question' => request('question'),
-            'draft'    => true,
+            'question'   => request('question'),
+            'created_by' => user(),
+            'draft'      => true,
         ]);
 
         return to_route('dashboard');

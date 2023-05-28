@@ -60,3 +60,11 @@ it('should create a question like draft', function () {
         'created_by' => $user,
     ]);
 });
+
+it('should it logged to create a new question', function () {
+    $request = post(route('question.store', [
+        'question' => str_repeat('*', 260) . '?',
+    ]));
+
+    $request->assertRedirect(route('login'));
+});

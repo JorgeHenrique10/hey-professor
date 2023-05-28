@@ -57,7 +57,7 @@ it('should create a question like draft', function () {
     assertDatabaseHas('questions', [
         'question'   => str_repeat('*', 255) . '?',
         'draft'      => true,
-        'created_by' => $user,
+        'created_by' => $user->id,
     ]);
 });
 

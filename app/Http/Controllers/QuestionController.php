@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\{RedirectResponse, Request, Response};
 
 class QuestionController extends Controller
 {
+    public function index(): View
+    {
+        return view(
+            'question.index',
+            [
+                'questions' => user()->questions,
+            ]
+        );
+    }
+
     public function store(): RedirectResponse
     {
         request()->validate(
@@ -16,7 +27,7 @@ class QuestionController extends Controller
         );
         Question::query()->create([
             'question'   => request('question'),
-            'created_by' => user(),
+            'created_by' => user()->id,
             'draft'      => true,
         ]);
 

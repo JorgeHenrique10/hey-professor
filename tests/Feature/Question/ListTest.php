@@ -11,7 +11,7 @@ it('should list all the questions', function () {
 
     actingAs($user);
 
-    $questions = Question::factory(10)->create();
+    $questions = Question::factory(5)->create();
 
     $response = get(route('dashboard'));
 

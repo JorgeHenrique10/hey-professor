@@ -25,8 +25,8 @@
                 <x-question :question="$q" />
             @endforeach
 
+            {{ $questions->links() }}
         </div>
-
         {{-- End Listagem --}}
     </x-container>
 </x-app-layout>

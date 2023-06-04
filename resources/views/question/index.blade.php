@@ -48,6 +48,8 @@
                                             Deletar
                                         </button>
                                     </x-form>
+                                    <a href="{{ route('question.edit', $q) }}"
+                                        class=" text-blue-600 hover:underline">Editar</a>
                                 </x-table.td>
                             </x-table.tr>
                         @endforeach
@@ -77,7 +79,8 @@
                                 </x-table.td>
                                 <x-table.td>
                                     <x-form delete :action="route('question.destroy', $q)">
-                                        <button class=" text-blue-600 hover:underline hover:text-red-600" type="submit">
+                                        <button class=" text-blue-600 hover:underline hover:text-red-600"
+                                            type="submit">
                                             Deletar
                                         </button>
                                     </x-form>

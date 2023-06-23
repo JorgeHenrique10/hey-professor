@@ -2,7 +2,7 @@
 
 use App\Models\{Question, User};
 
-use function Pest\Laravel\{actingAs, assertSoftDeleted, patch, put};
+use function Pest\Laravel\{actingAs, assertNotSoftDeleted, assertSoftDeleted, patch, put};
 
 it('should be able archive question', function () {
     $user     = User::factory()->create();
@@ -32,4 +32,21 @@ it('should make sure that only the person who has created the question can archi
 
     $request = patch(route('question.archive', $question))
         ->assertForbidden();
+});
+
+it('should be able restore an archived question', function () {
+    $user     = User::factory()->create();
+    $question = Question::factory()
+        ->for($user, 'createdBy')
+        ->create(['draft' => true, 'deleted_at' => now()]);
+
+    actingAs($user);
+
+    $resquest = patch(route('question.restore', $question))->assertRedirect();
+
+    assertNotSoftDeleted('questions', ['id' => $question->id]);
+
+    expect($question)
+        ->refresh()
+        ->deleted_at->toBeNull();
 });

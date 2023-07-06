@@ -78,10 +78,49 @@
                                     {{ $q->question }}
                                 </x-table.td>
                                 <x-table.td>
-                                    <x-form delete :action="route('question.destroy', $q)">
+                                    <x-form delete :action="route('question.destroy', $q)" onsubmit="return confirm('Tem certeza?')">
                                         <button class=" text-blue-600 hover:underline hover:text-red-600"
                                             type="submit">
                                             Deletar
+                                        </button>
+                                    </x-form>
+                                    <x-form patch :action="route('question.archive', $q)">
+                                        <button class=" text-blue-600 hover:underline hover:text-yellow-600"
+                                            type="submit">
+                                            Arquivar
+                                        </button>
+                                    </x-form>
+                                </x-table.td>
+                            </x-table.tr>
+                        @endforeach
+                    </tbody>
+                </x-table.table>
+            </div>
+
+            <div>
+                <div class="dark:border-gray-400 border border-dashed w-full mt-10 mb-4 "></div>
+                <div class="dark:text-gray-400 uppercase font-bold text-xl">
+                    Archive
+                </div>
+                <x-table.table>
+                    <x-table.thead>
+                        <x-table.th>
+                            Question
+                        </x-table.th>
+                        <x-table.th>
+                            Actions
+                        </x-table.th>
+                    </x-table.thead>
+                    <tbody>
+                        @foreach ($questionsArchived as $q)
+                            <x-table.tr>
+                                <x-table.td>
+                                    {{ $q->question }}
+                                </x-table.td>
+                                <x-table.td>
+                                    <x-form patch :action="route('question.restore', $q)">
+                                        <button class=" text-blue-600 hover:underline" type="submit">
+                                            Restore
                                         </button>
                                     </x-form>
                                 </x-table.td>

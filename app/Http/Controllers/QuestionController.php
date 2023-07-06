@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Rules\SameQuestionRule;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\{RedirectResponse, Request, Response};
 
@@ -23,7 +24,7 @@ class QuestionController extends Controller
     {
         request()->validate(
             [
-                'question' => ['required', 'min:10', 'ends_with:?'],
+                'question' => ['required', 'min:10', 'ends_with:?', new SameQuestionRule()],
             ]
         );
         Question::query()->create([
